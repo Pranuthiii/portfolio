@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pranuthi Kabilan — turning weird ideas into working software</title>
+<meta name="description" content="Pranuthi Kabilan — B.Tech CSE (AI & ML) graduate. Deep learning, GPU computing, computer vision, and software people can actually use.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e100f;--bg2:#151816;--line:#272c29;--tx:#e9ece6;--mut:#8b948d;--ember:#ff6a3d;--mint:#7dffcf;
+--px:"Press Start 2P",ui-monospace,monospace;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;--head:"Space Grotesk","Arial Black",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--tx);font:16px/1.65 var(--mono);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.06;
+background:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:110px 0;position:relative}
+.sr{position:absolute;left:-9999px}
+.glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;left:0;top:0;
+background:radial-gradient(circle,rgba(255,106,61,.13),transparent 65%);transform:translate(-50%,-50%);will-change:transform}
+main,nav,footer{position:relative;z-index:2}
+/* cursor */
+.cur,.ring{position:fixed;left:0;top:0;pointer-events:none;z-index:100;border-radius:50%;display:none}
+.cur{width:7px;height:7px;background:var(--mint);margin:-3.5px 0 0 -3.5px}
+.ring{width:34px;height:34px;border:1px solid var(--ember);margin:-17px 0 0 -17px;transition:width .2s,height .2s,margin .2s,background .2s}
+.ring.big{width:56px;height:56px;margin:-28px 0 0 -28px;background:rgba(255,106,61,.12)}
+@media(hover:hover) and (pointer:fine){body.fx{cursor:none}body.fx a,body.fx button{cursor:none}.cur,.ring{display:block}}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(14,16,15,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:58px;font-size:13px}
+.logo{font-weight:600;color:var(--mint)}.logo b{color:var(--ember)}
+nav ul{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+nav ul a{color:var(--mut);transition:color .2s}nav ul a:hover{color:var(--tx)}
+/* type */
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.num{font:700 clamp(80px,14vw,170px)/.8 var(--head);color:transparent;-webkit-text-stroke:1px #343b37;position:absolute;right:16px;top:70px;user-select:none;z-index:-1}
+h2{font:700 clamp(34px,6vw,64px)/1 var(--head);letter-spacing:-.03em;margin:10px 0 44px}
+h2 em{font-style:normal;color:var(--ember)}
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border:1px solid var(--line);background:var(--bg2);font-size:14px;font-weight:600;transition:transform .2s,border-color .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-3px);border-color:var(--mint);color:var(--mint)}
+.btn.pri{background:var(--ember);border-color:var(--ember);color:#150a06}
+.btn.pri:hover{background:var(--mint);border-color:var(--mint);color:#06150f}
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 0 60px}
+.hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}
+h1{font:700 clamp(46px,9.5vw,128px)/.88 var(--head);letter-spacing:-.045em;margin:16px 0 22px}
+h1 span{display:block}h1 .o{color:transparent;-webkit-text-stroke:2px var(--ember)}
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;opacity:0;pointer-events:none}
+.glitch:hover::before{opacity:.8;color:var(--mint);animation:g1 .4s steps(2) infinite;-webkit-text-stroke:0}
+.glitch:hover::after{opacity:.8;color:var(--ember);animation:g2 .4s steps(2) infinite;-webkit-text-stroke:0}
+@keyframes g1{0%{transform:translate(-3px,1px);clip-path:inset(10% 0 55% 0)}100%{transform:translate(3px,-1px);clip-path:inset(60% 0 8% 0)}}
+@keyframes g2{0%{transform:translate(3px,-1px);clip-path:inset(55% 0 12% 0)}100%{transform:translate(-3px,1px);clip-path:inset(8% 0 62% 0)}}
+.lead{font-size:clamp(17px,2vw,21px);max-width:560px;color:#cdd3cc}
+.lead b{color:var(--tx)}
+.rot{margin-top:14px;color:var(--mut);font-size:15px}.rot span{color:var(--mint)}
+.rot i{display:inline-block;width:9px;height:1em;background:var(--ember);vertical-align:-2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chips span{font-size:12px;border:1px solid var(--line);padding:4px 10px;color:var(--mut)}
+.chips span b{color:var(--tx);font-weight:600}
+.term{background:#0a0c0b;border:1px solid var(--line);box-shadow:0 0 0 1px #000,0 30px 80px -30px rgba(255,106,61,.35);font-size:13px}
+.term .bar{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);color:var(--mut);font-size:12px}
+.term .bar i{width:10px;height:10px;border-radius:50%;background:#333}.term .bar i:first-child{background:var(--ember)}
+.term pre{padding:16px;min-height:290px;white-space:pre-wrap;word-break:break-word;font:inherit;line-height:1.7}
+.p{color:var(--mint)}.d{color:var(--mut)}.e{color:var(--ember)}
+/* marquee */
+.mq{border-block:1px solid var(--line);overflow:hidden;background:var(--bg2);padding:14px 0;white-space:nowrap}
+.mq div{display:inline-block;animation:mq 38s linear infinite;font:700 22px var(--head);letter-spacing:-.01em;color:var(--mut)}
+.mq:hover div{animation-play-state:paused}
+.mq b{color:var(--ember);margin:0 18px}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* about */
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:50px}
+.about p{margin-bottom:16px;color:#cdd3cc}.about p strong{color:var(--tx)}
+.stats{border:1px solid var(--line);background:var(--bg2);padding:20px;align-self:start}
+.stats h3{font-size:12px;color:var(--mint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+.st{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13px}
+.st:last-child{border:0}.st span{color:var(--mut)}.st b{text-align:right}
+.st b.h{color:var(--ember)}
+/* projects */
+.pl{border-top:1px solid var(--line)}
+.pj{position:relative;display:grid;grid-template-columns:70px 1fr auto;gap:24px;padding:30px 18px;border-bottom:1px solid var(--line);overflow:hidden;transition:background .3s;
+--mx:50%;--my:50%}
+.pj::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--mx) var(--my),rgba(125,255,207,.09),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.pj:hover::before,.pj:focus-within::before{opacity:1}
+.pj:hover,.pj:focus-within{background:#121513}
+.pn{font:700 44px/1 var(--head);color:#3a423d;transition:color .3s}
+.pj:hover .pn{color:var(--ember)}
+.meta{font-size:12px;color:var(--mint);letter-spacing:.1em;text-transform:uppercase;display:flex;gap:14px;flex-wrap:wrap}
+.meta em{font-style:normal;color:var(--mut)}
+.pj h3{font:700 clamp(22px,3.2vw,36px)/1.1 var(--head);letter-spacing:-.02em;margin:6px 0 8px;transition:transform .3s}
+.pj:hover h3{transform:translateX(8px)}
+.pj p{color:#b8bfb7;max-width:640px;font-size:14.5px}
+.tg{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tg span{font-size:11.5px;padding:2px 9px;border:1px solid var(--line);color:var(--mut)}
+.badge{display:inline-block;margin-top:12px;font-size:12px;color:#150a06;background:var(--ember);padding:2px 9px;font-weight:600}
+.pj .btn{align-self:center;font-size:13px}
+/* timeline */
+.log{border-left:2px solid var(--line);margin-left:6px}
+.c{position:relative;padding:4px 0 34px 30px}
+.c::before{content:"";position:absolute;left:-7px;top:10px;width:12px;height:12px;background:var(--bg);border:2px solid var(--ember);border-radius:50%;transition:background .2s,transform .2s}
+.c:hover::before{background:var(--mint);border-color:var(--mint);transform:scale(1.3)}
+.hash{font-size:12px;color:var(--ember)}.hash span{color:var(--mut);margin-left:10px}
+.c h3{font:700 clamp(19px,2.6vw,27px)/1.2 var(--head);margin:4px 0 4px}
+.c h3 small{font:400 14px var(--mono);color:var(--mint);margin-left:8px}
+.c p{color:#b8bfb7;font-size:14.5px;max-width:680px}
+/* skills */
+.tb{display:flex;flex-wrap:wrap;gap:10px}
+.sk{font:600 14px var(--mono);color:var(--tx);background:var(--bg2);border:1px solid var(--line);padding:10px 16px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s,color .2s}
+.sk::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--mint);transition:width .3s}
+.sk:hover,.sk:focus-visible,.sk.on{transform:translateY(-4px) rotate(-1deg);border-color:var(--ember);color:var(--ember)}
+.sk:hover::after,.sk.on::after{width:100%}
+.sk.ai{border-left:3px solid var(--mint)}
+.ro{margin-top:24px;padding:16px 18px;border:1px dashed var(--ember);min-height:62px;font-size:14px;background:#0a0c0b}
+.ro b{color:var(--mint)}
+.leg{margin-top:12px;font-size:12px;color:var(--mut)}
+/* extra */
+.ex{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:10px}
+.ex div{border:1px solid var(--line);padding:18px;background:var(--bg2);transition:border-color .2s,transform .2s}
+.ex div:hover{border-color:var(--mint);transform:translateY(-3px)}
+.ex h4{font:700 17px var(--head);margin-bottom:6px}.ex small{color:var(--mint);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+.ex p{color:#b8bfb7;font-size:13.5px;margin-top:6px}
+/* contact */
+.ct{text-align:left;padding-bottom:70px}
+.ct h2{font-size:clamp(40px,8.5vw,112px);line-height:.92}
+.ct .lead{margin-bottom:8px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:34px}
+.row a{border:1px solid var(--line);background:var(--bg2);padding:16px 18px;transition:all .25s}
+.row a:hover{border-color:var(--ember);transform:translateY(-4px);box-shadow:0 14px 40px -20px var(--ember)}
+.row small{display:block;color:var(--mut);font-size:11.5px;letter-spacing:.14em}.row b{font-size:14px;word-break:break-all}
+.todo{color:var(--ember);font-size:11px}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--mut);font-size:12.5px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:860px){
+nav ul li:nth-child(n+5){display:none}
+.hero .grid,.about{grid-template-columns:1fr}
+.pj{grid-template-columns:1fr;gap:10px}.pn{font-size:30px}.pj .btn{justify-self:start}
+section{padding:80px 0}.num{top:50px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+
+/* ===== GAME LAYER ===== */
+body{background-image:linear-gradient(rgba(125,255,207,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(125,255,207,.035) 1px,transparent 1px);background-size:40px 40px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:49;box-shadow:inset 0 0 170px rgba(0,0,0,.7)}
+html.god{filter:hue-rotate(140deg) saturate(1.2)}
+.tag,.btn,.meta,.hash,.row small,.ex small,.stats h3,nav ul a{font-family:var(--px);font-size:10px;line-height:1.8;letter-spacing:.04em}
+.btn,.pj .btn{font-size:10px;text-transform:uppercase;padding:13px 16px;border-width:2px;box-shadow:4px 4px 0 #000}
+.btn:hover{box-shadow:6px 6px 0 rgba(125,255,207,.35)}.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
+nav::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:calc(var(--p,0)*100%);background:linear-gradient(90deg,var(--ember),var(--mint))}
+.hud{display:flex;align-items:center;gap:12px;font:9px var(--px);color:var(--mint)}
+.xpb{width:110px;height:10px;border:2px solid var(--mint);padding:1px}
+.xpb i{display:block;height:100%;width:calc(var(--p,0)*100%);background:linear-gradient(90deg,var(--ember),var(--mint))}
+#sc{color:var(--ember)}
+.stamp{color:#150a06;background:var(--mint);padding:0 6px}
+.pj::after{content:"+100 XP";position:absolute;right:18px;top:10px;font:9px var(--px);color:var(--mint);opacity:0;transform:translateY(8px);transition:.3s}
+.pj:hover::after{opacity:1;transform:none}
+.tb{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:12px}
+.sk{aspect-ratio:1.3;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-size:13px;background:linear-gradient(160deg,#1a1f1c,#0f1210);border:2px solid #2c332f;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+.sk.ai{border-color:#2f6b58}.sk.ai:hover,.sk.ai.on,.sk:hover,.sk.on{border-color:var(--ember)}
+.cont{font:clamp(16px,3vw,28px) var(--px);color:var(--ember);margin:28px 0 4px;animation:bl 1.2s steps(1) infinite}.cont span{color:var(--tx)}
+.toast{position:fixed;right:16px;bottom:16px;z-index:70;display:flex;gap:12px;align-items:center;background:#0a0c0b;border:2px solid var(--mint);padding:12px 16px;max-width:330px;box-shadow:5px 5px 0 #000;transform:translateY(130px);opacity:0;transition:.45s}
+.toast.show{transform:none;opacity:1}.toast i{font-style:normal;font-size:24px}.toast b{font:10px/1.6 var(--px);color:var(--mint)}.toast small{display:block;color:var(--mut);font:12px var(--mono);margin-top:4px}
+#boot{position:fixed;inset:0;z-index:200;background:#070908;display:grid;place-items:center;text-align:center;padding:20px;transition:opacity .6s,visibility .6s}
+#boot.off{opacity:0;visibility:hidden}
+#boot .bt{font:clamp(22px,5.5vw,52px)/1.35 var(--px);color:var(--ember);text-shadow:4px 4px 0 #3a1408}
+#boot p{font:10px/2 var(--px);color:var(--mut);margin-top:14px}
+.ld{width:min(320px,70vw);height:14px;border:2px solid var(--mint);margin:28px auto 10px;padding:2px}
+.ld i{display:block;height:100%;width:0;background:var(--mint);animation:ld 2.1s steps(14) forwards}
+@keyframes ld{to{width:100%}}
+#boot .pr{color:var(--mint);animation:bl 1s steps(1) infinite}
+@media(max-width:1100px){#sc{display:none}}
+@media(max-width:860px){.hud{display:none}}
+</style>
+</head>
+<body>
+<div id="boot" role="dialog" aria-label="Loading screen"><div><p>PLAYER 1 · LOADING</p><div class="bt">PRANUTHI<br>KABILAN</div><p>WEIRD IDEAS → WORKING SOFTWARE</p><div class="ld"><i></i></div><p class="pr">PRESS ANY KEY TO START</p></div></div>
+<div class="glow" id="glow" aria-hidden="true"></div><div class="cur" id="cur"></div><div class="ring" id="ring"></div>
+
+<nav aria-label="Main"><div class="wrap">
+<a class="logo" href="#top">pranuthi<b>.</b>dev</a>
+<div class="hud" aria-hidden="true"><span id="lvl">LV 1</span><div class="xpb"><i></i></div><span id="sc">SCORE 000000</span></div>
+<ul><li><a href="#projects">projects</a></li><li><a href="#about">about</a></li><li><a href="#log">changelog</a></li><li><a href="#toolbox">toolbox</a></li><li><a href="#contact">contact</a></li></ul>
+</div></nav>
+
+<main id="top">
+<!-- HERO -->
+<header class="hero"><div class="wrap grid">
+<div>
+<p class="tag">PLAYER 1 · B.Tech CSE (AI &amp; ML) · class of 2026</p>
+<h1><span>Pranuthi</span><span class="o"><span class="glitch" data-t="Kabilan">Kabilan</span></span></h1>
+<p class="lead">A Computer Science graduate who likes <b>turning weird ideas into working software</b>. Deep learning, GPU computing, computer vision — plus an occasional poem.</p>
+<p class="rot" aria-live="off">I build <span id="rot"></span><i></i></p>
+<div class="chips">
+<span><b>CGPA</b> 8.23/10</span><span><b>SRMIST</b> Chennai</span><span><b>Exchange</b> Western Sydney Univ.</span><span><b>Published</b> ICONDEEPCOM 2026, Taiwan</span>
+</div>
+<div class="btns">
+<a class="btn pri" href="#projects">▶ View Projects</a>
+<a class="btn" data-link="resume" href="Pranuthi_kabilan_Resume_final.pdf" target="_blank" rel="noopener">Resume ↗</a>
+<a class="btn" data-link="github" href="https://github.com/Pranuthiii" target="_blank" rel="noopener">GitHub ↗</a>
+<a class="btn" data-link="linkedin" href="https://www.linkedin.com/in/pranuthi-kabilan-0261a1265/" target="_blank" rel="noopener">LinkedIn ↗</a>
+<a class="btn" href="#contact">Contact</a>
+</div>
+</div>
+<div class="term" role="img" aria-label="Animated terminal summarising Pranuthi: graduate, researcher, builder">
+<div class="bar"><i></i><i></i><i></i>&nbsp; pranuthi@home: ~</div>
+<pre id="tp"></pre>
+</div>
+</div></header>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<!-- PROJECTS -->
+<section id="projects"><div class="wrap">
+<span class="num" aria-hidden="true">01</span>
+<p class="tag">STAGE 1-1 · quest log</p>
+<h2>Things I <em>actually built</em></h2>
+<div class="pl" id="pl"></div>
+</div></section>
+
+<!-- ABOUT -->
+<section id="about"><div class="wrap">
+<span class="num" aria-hidden="true">02</span>
+<p class="tag">STAGE 1-2 · character select</p>
+<h2>Player <em>profile</em></h2>
+<div class="about rv">
+<div>
+<p>I'm a B.Tech CSE (AI &amp; ML) graduate who enjoys the intersection of <strong>intelligent systems and software people can actually use</strong>.</p>
+<p>In 2025 I spent a semester at <strong>Western Sydney University</strong> on a full scholarship and finished with a <strong>High Distinction</strong>. In 2026 my stock-market prediction research was published and presented at <strong>ICONDEEPCOM in Taiwan</strong> — where I also emceed.</p>
+<p>Back home, I was the <strong>Chairwoman of ACM SIGCHI at SRMIST</strong>: running workshops, a hackathon and Hour of Code events. Leadership, but make it debuggable.</p>
+<p>Off-screen: I win bronze medals in PUBG esports, write poetry (there's a published book, <em>The world as I see it</em>), and treat any annoying problem as a side quest.</p>
+</div>
+<aside class="stats" aria-label="Quick facts">
+<h3>character sheet</h3>
+<div class="st"><span>class</span><b>AI/ML developer</b></div>
+<div class="st"><span>education</span><b>B.Tech CSE (AI &amp; ML), SRMIST · CGPA 8.23</b></div>
+<div class="st"><span>abroad</span><b>Western Sydney Univ. · Jul–Dec 2025 · High Distinction</b></div>
+<div class="st"><span>research</span><b>Published · ICONDEEPCOM 2026, Taiwan</b></div>
+<div class="st"><span>side quests</span><b class="h">PUBG 🥉 · poetry · hackathons</b></div>
+<div class="st"><span>languages</span><b>EN · TA · TE · HI · FR · JA (basic)</b></div>
+</aside>
+</div>
+</div></section>
+
+<!-- TIMELINE -->
+<section id="log"><div class="wrap">
+<span class="num" aria-hidden="true">03</span>
+<p class="tag">STAGE 1-3 · save points</p>
+<h2>Commit <em>history</em></h2>
+<div class="log" id="logb"></div>
+</div></section>
+
+<!-- SKILLS -->
+<section id="toolbox"><div class="wrap">
+<span class="num" aria-hidden="true">04</span>
+<p class="tag">STAGE 1-4 · inventory</p>
+<h2>Developer <em>loadout</em></h2>
+<div class="tb" id="tb" role="list"></div>
+<div class="ro" id="ro" aria-live="polite"><b>&gt;</b> hover, tap or tab onto an item to inspect it.</div>
+<p class="leg">teal-bordered slots = AI / data / compute gear · the rest = programming, web, systems &amp; build tools · inspect any item</p>
+</div></section>
+
+<!-- EXTRA -->
+<section id="more" style="padding-top:20px"><div class="wrap">
+<p class="tag">BONUS STAGE · side quests</p>
+<h2>Side <em>quests</em></h2>
+<div class="ex rv">
+<div><small>Research · 2026</small><h4>Published at ICONDEEPCOM</h4><p>Stock market analysis paper, presented in Taiwan. Also served as emcee.</p></div>
+<div><small>Abroad · 2025</small><h4>Award of Academic Excellence</h4><p>Western Sydney University semester abroad — High Distinction.</p></div>
+<div><small>Esports</small><h4>PUBG Bronze Medal</h4><p>Inter-campus esports at SRMIST. Teamwork under pressure, with worse lag.</p></div>
+<div><small>Poetry</small><h4>Published poetry book</h4><p><em>The world as I see it</em> — and a Top 200 finish in Hashtag Kalaakar poetry.</p></div>
+<div><small>Certs</small><h4>AWS Academy · ML Foundations</h4><p>Plus Udemy courses in algorithms, DBMS &amp; SQL, and Java.</p></div>
+</div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact" class="ct"><div class="wrap">
+<p class="tag">FINAL STAGE · continue?</p>
+<h2>Game over?<br><span style="color:var(--ember)">Not quite.</span></h2>
+<p class="lead">You've scrolled this far, which means you're either hiring or procrastinating. Both are welcome. Insert coin → send email. I promise to reply faster than my code compiles on the first try.</p>
+<div class="cont">CONTINUE? <span id="cd">9</span></div>
+<div class="btns"><a class="btn pri" data-link="email" href="mailto:pranuthi.k.s@gmail.com">▶ Insert coin · Email me</a></div>
+<div class="row">
+<a data-link="email" href="mailto:pranuthi.k.s@gmail.com"><small>EMAIL</small><b>pranuthi.k.s@gmail.com</b></a>
+<a data-link="github" href="#" target="_blank" rel="noopener"><small>GITHUB</small><b>github.com/Pranuthiii</b></a>
+<a data-link="linkedin" href="#" target="_blank" rel="noopener"><small>LINKEDIN</small><b>pranuthi-kabilan</b></a>
+<a data-link="resume" href="Pranuthi_kabilan_Resume_final.pdf" target="_blank" rel="noopener"><small>RESUME</small><b>Download PDF ↓</b></a>
+</div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© 2026 Pranuthi Kabilan · hand-built, vanilla HTML/CSS/JS</span><span>psst: ↑ ↑ ↓ ↓ ← → ← → B A</span></div></footer>
+
+<script>
+/* ============ EDIT ME ============ */
+const CONFIG={
+  github:"https://github.com/Pranuthiii",
+  linkedin:"https://www.linkedin.com/in/pranuthi-kabilan-0261a1265/",
+  resume:"Pranuthi_kabilan_Resume_final.pdf",
+  email:"mailto:pranuthi.k.s@gmail.com"
+};
+const PROJECTS=[
+ {n:"01",cat:"Deep Learning · Research",yr:"2026 · Published",t:"Stock Market Prediction Framework",
+  d:"A deep learning framework that uses technical indicators and large financial datasets to analyse market trends and forecast stock movements. Published and presented at ICONDEEPCOM 2026 in Taiwan.",
+  tags:["Python","Deep Learning","Big Data Analytics","Technical Indicators"],badge:"📄 Published · ICONDEEPCOM 2026"},
+ {n:"02",cat:"GPU Computing · Systems",yr:"Proof of concept",t:"GPU-Powered Drone Navigation (RAPIDS)",
+  d:"A high-performance pathfinding system using CUDA and CuPy to find the shortest path between two points on a real-world map — a proof of concept for low-latency, real-time drone route calculation.",
+  tags:["Python","NumPy","CUDA","TensorFlow","RAPIDS","ML"],gh:1},
+ {n:"03",cat:"Computer Vision · Automation",yr:"Project",t:"E-Waste Sorting Robot",
+  d:"An automated robot that identifies and categorises electronic waste using intelligent detection and sorting mechanisms, aimed at making recycling more efficient.",
+  tags:["Python","Computer Vision","Embedded Systems","Automation"],gh:1},
+ {n:"04",cat:"HealthTech · Web",yr:"Project",t:"Blood Bank Management System",
+  d:"A web-based system to track blood availability across multiple blood banks while managing requests from hospitals and individuals.",
+  tags:["HTML","SQL","Healthcare Informatics"],gh:1},
+ {n:"05",cat:"Archive",yr:"Ongoing",t:"More experiments on GitHub",
+  d:"The rest of the lab: smaller builds, coursework, and half-finished weird ideas.",tags:["Git","GitHub"],gh:1,label:"Browse repos ↗"}
+];
+const LOG=[
+ {h:"◆ CHECKPOINT 04",d:"2026",t:"Research — ICONDEEPCOM 2026",s:"Southern Taiwan Univ. of Science &amp; Technology",p:"Published and presented stock-market prediction research in Taiwan, and emceed at the conference."},
+ {h:"◆ CHECKPOINT 03",d:"Jul–Dec 2025",t:"Semester Abroad",s:"Western Sydney University",p:"Full scholarship. Finished with a High Distinction and an Award of Academic Excellence."},
+ {h:"◆ CHECKPOINT 02",d:"Jun 2024 – Jun 2025",t:"Chairwoman — ACM SIGCHI",s:"SRMIST",p:"Led the chapter and organised Hour of Code, the Pythoneers Workshop &amp; Hackathon, a Full Stack with AI session, and a GenAI talk."},
+ {h:"◆ CHECKPOINT 01",d:"Experience",t:"Research Analyst Intern",s:"KOSEC",p:"Research analyst internship."}
+];
+const SKILLS=[
+ ["Python","Behind most things here: stock prediction, drone pathfinding, e-waste and personal builds.",1],
+ ["Java","Core OOP language used across coursework and programming practice."],
+ ["C++","Algorithms, DSA and performance-oriented programming."],
+ ["C","The low-level foundation layer."],
+ ["SQL","Used for structured data and the Blood Bank Management System.",1],
+ ["JavaScript","Interactive web experiences and full-stack development."],
+ ["HTML / CSS","Interfaces, layouts and the entire visual layer of this site."],
+ ["Flask","Lightweight Python web backends and API-style applications."],
+ ["Node.js","JavaScript runtime for server-side development."],
+ ["EJS","Server-rendered interfaces for Node.js applications."],
+ ["PostgreSQL","Relational data and application backends.",1],
+ ["SQLite","Lightweight local storage for desktop applications."],
+ ["Machine Learning","Prediction, classification and applied ML experiments.",1],
+ ["Deep Learning","The engine behind the published stock-prediction research.",1],
+ ["PyTorch","Deep-learning experimentation and model development.",1],
+ ["TensorFlow","ML/deep-learning workflows and GPU-oriented experimentation.",1],
+ ["PySpark","Large-scale data processing for the stock-prediction work.",1],
+ ["NumPy","Numerical computing underneath ML and scientific Python."],
+ ["Pandas","Data cleaning, exploration and financial-data workflows."],
+ ["Scikit-learn","Classical machine-learning experiments and evaluation.",1],
+ ["Computer Vision","Detection and categorisation in the E-Waste Sorting Robot.",1],
+ ["SHAP","Model explainability — understanding what the model actually learned.",1],
+ ["CUDA","GPU acceleration for performance-heavy computation.",1],
+ ["CuPy","GPU-accelerated numerical computing for pathfinding experiments.",1],
+ ["RAPIDS","GPU-accelerated data science and ML workflows.",1],
+ ["XGBoost","Gradient-boosted modelling for structured-data experiments.",1],
+ ["Git / GitHub","Version control, collaboration and project history."],
+ ["Docker","Packaging applications and keeping development environments reproducible."],
+ ["DSA","Algorithms, data structures and problem-solving practice."],
+ ["Tkinter","Python desktop interfaces, including the Mental Health Diary."],
+ ["Jupyter / Colab","Rapid experimentation, notebooks and ML prototyping."],
+ ["Matplotlib","Visualising data, model results and experiments."],
+ ["AWS","Cloud/ML foundations through AWS Academy learning.",1],
+ ["Google Colab","GPU-backed experimentation and notebook-based ML work."],
+ ["REST / APIs","Connecting application layers and building usable software."],
+ ["Problem Solving","The actual loadout item behind most of the others."]
+];
+const MQ=["PYTHON","DEEP LEARNING","CUDA","COMPUTER VISION","BIG DATA","SQL","PUBG BRONZE 🥉","POETRY","HIGH DISTINCTION","ACM SIGCHI","TAIWAN 2026","SYDNEY 2025"];
+/* =============================== */
+const SEEN=(()=>{try{return sessionStorage.seen}catch(e){}})(),BD=SEEN?0:2300;
+const $=s=>document.querySelector(s);
+document.querySelectorAll("[data-link]").forEach(a=>a.href=CONFIG[a.dataset.link]);
+document.querySelectorAll(".todo").forEach(x=>{if(!CONFIG.github.includes("YOUR-"))x.textContent=CONFIG.github.replace("https://github.com/","")});
+$("#mq").innerHTML=(MQ.map(x=>x+"<b>✦</b>").join("")).repeat(2);
+
+$("#pl").innerHTML=PROJECTS.map(p=>`<article class="pj rv"><div class="pn">${p.n}</div><div>
+<div class="meta"><span class="stamp">${p.n==="05"?"SIDE QUEST":"✔ CLEARED"}</span>${p.cat}<em>${p.yr}</em></div><h3>${p.t}</h3><p>${p.d}</p>
+<div class="tg">${p.tags.map(t=>`<span>${t}</span>`).join("")}</div>${p.badge?`<span class="badge">${p.badge}</span>`:""}</div>
+${p.gh?`<a class="btn" href="${CONFIG.github}" target="_blank" rel="noopener" aria-label="${p.t} on GitHub">${p.label||"GitHub ↗"}</a>`:""}</article>`).join("");
+document.querySelectorAll(".pj").forEach(e=>e.addEventListener("pointermove",ev=>{const r=e.getBoundingClientRect();e.style.setProperty("--mx",ev.clientX-r.left+"px");e.style.setProperty("--my",ev.clientY-r.top+"px")}));
+
+$("#logb").innerHTML=LOG.map(l=>`<div class="c rv"><div class="hash">${l.h}<span>${l.d}</span></div><h3>${l.t}<small>${l.s||""}</small></h3><p>${l.p}</p></div>`).join("");
+
+const ro=$("#ro");
+$("#tb").innerHTML=SKILLS.map((s,i)=>`<button class="sk${s[2]?" ai":""}" role="listitem" data-i="${i}">${s[0]}</button>`).join("");
+document.querySelectorAll(".sk").forEach(b=>{const show=()=>{document.querySelectorAll(".sk.on").forEach(x=>x.classList.remove("on"));b.classList.add("on");const s=SKILLS[b.dataset.i];ro.innerHTML=`<b>&gt; inspect ${s[0].toLowerCase()}</b><br>${s[1]}`};
+["mouseenter","focus","click"].forEach(e=>b.addEventListener(e,show))});
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+/* rotating line */
+const R=["models that predict markets","GPU routes for drones","robots that sort e-waste","tools for blood banks","poems, occasionally"];
+let ri=0,ci=0,del=false;const rot=$("#rot");
+if(reduce){rot.textContent=R[0]}else(function tick(){const w=R[ri];ci+=del?-1:1;rot.textContent=w.slice(0,ci);let t=del?28:60;
+if(!del&&ci===w.length){del=true;t=1400}else if(del&&ci===0){del=false;ri=(ri+1)%R.length;t=300}setTimeout(tick,t)})();
+
+/* terminal */
+const L=[["$ whoami","p"],["pranuthi_kabilan — CS grad, AI/ML, builder",""],["",""],["$ cat education.txt","p"],["B.Tech CSE (AI &amp; ML) · SRMIST · CGPA 8.23",""],["",""],["$ git log --oneline -3","p"],
+["<span class='e'>a1f2026</span> published @ ICONDEEPCOM, Taiwan",""],["<span class='e'>b7c2025</span> semester abroad · Sydney · HD",""],["<span class='e'>c3d2024</span> chaired ACM SIGCHI",""],["",""],["$ ./status","p"],["graduated ✔ · still building · side quests: ∞",""]];
+const tp=$("#tp");
+if(reduce){tp.innerHTML=L.map(l=>l[0]).join("\n")}else{let li=0,ch=0,out="";setTimeout(function step(){if(li>=L.length){tp.innerHTML=out+"<span class='e'>█</span>";return}
+const [txt,c]=L[li];if(c==="p"&&ch<txt.length){ch++;tp.innerHTML=out+"<span class='p'>"+txt.slice(0,ch)+"</span><span class='e'>█</span>";setTimeout(step,32);return}
+out+=(c==="p"?"<span class='p'>"+txt+"</span>":txt)+"\n";li++;ch=0;setTimeout(step,c==="p"?260:70)},BD)}
+
+/* cursor + glow */
+const cur=$("#cur"),ring=$("#ring"),glow=$("#glow");let mx=0,my=0,rx=0,ry=0;
+if(matchMedia("(hover:hover) and (pointer:fine)").matches){document.body.classList.add("fx");
+addEventListener("pointermove",e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px)`});
+document.querySelectorAll("a,button").forEach(e=>{e.addEventListener("mouseenter",()=>ring.classList.add("big"));e.addEventListener("mouseleave",()=>ring.classList.remove("big"))});
+(function loop(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.transform=`translate(${rx}px,${ry}px)`;glow.style.transform=`translate(${rx}px,${ry+scrollY*0}px)`;requestAnimationFrame(loop)})()}
+else glow.style.display="none";
+
+/* ===== GAME LAYER ===== */
+const boot=$("#boot"),nav=$("nav"),sc=$("#sc");let lv=1,bonus=0,tt;
+function startGame(){if(boot.classList.contains("off"))return;boot.classList.add("off");try{sessionStorage.seen=1}catch(e){}}
+if(SEEN||reduce)boot.remove();else{setTimeout(startGame,2300);["keydown","pointerdown"].forEach(e=>addEventListener(e,startGame,{once:true}))}
+const toast=document.createElement("div");toast.className="toast";toast.setAttribute("role","status");document.body.appendChild(toast);
+function pop(i,t,m){toast.innerHTML=`<i>${i}</i><div><b>${t}</b><small>${m}</small></div>`;toast.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),3000)}
+const ST=[["#top"],["#projects","Quest log loaded","4 shipped projects + the archive"],["#about","Character select","Sydney · Taiwan · ACM SIGCHI"],["#log","Save points","Checkpoint history unlocked"],["#toolbox","Inventory opened","Hover any item to inspect it"],["#more","Bonus stage","Side quests unlocked"],["#contact","MAX LEVEL","Final boss: your inbox"]];
+function onScroll(){const h=document.documentElement,p=Math.min(1,scrollY/((h.scrollHeight-innerHeight)||1));nav.style.setProperty("--p",p);
+let n=1;ST.forEach((x,i)=>{if($(x[0]).getBoundingClientRect().top<innerHeight*.45)n=i+1});
+if(n!==lv){const up=n>lv;lv=n;$("#lvl").textContent=n===7?"LV MAX":"LV "+n;if(up&&boot.classList.contains("off")||up&&!boot.isConnected)pop("⬆","LEVEL UP · "+ST[n-1][1],ST[n-1][2])}
+sc.textContent="SCORE "+String(Math.floor(p*4000)+bonus).padStart(6,"0")}
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+const seenSk=new Set();document.querySelectorAll(".sk").forEach(b=>["mouseenter","focus","click"].forEach(e=>b.addEventListener(e,()=>{if(seenSk.has(b))return;seenSk.add(b);bonus+=50;onScroll();if(seenSk.size===1)pop("🔍","ACHIEVEMENT · Curious","Inspected your first item (+50)");if(seenSk.size===SKILLS.length)pop("🎒","ACHIEVEMENT · Completionist","Inspected every item in the full loadout")})));
+const seenPj=new Set();document.querySelectorAll(".pj").forEach(e=>e.addEventListener("pointerenter",()=>{if(seenPj.has(e))return;seenPj.add(e);bonus+=100;onScroll()}));
+const cd=$("#cd");let c9=9;if(!reduce)setInterval(()=>{if(lv<7)return;c9=c9<=0?9:c9-1;cd.textContent=c9},1000);
+const K="ArrowUp,ArrowUp,ArrowDown,ArrowDown,ArrowLeft,ArrowRight,ArrowLeft,ArrowRight,b,a".split(",");let ki=0;
+addEventListener("keydown",e=>{ki=e.key===K[ki]?ki+1:(e.key===K[0]?1:0);if(ki===K.length){ki=0;document.documentElement.classList.toggle("god");bonus+=9999;onScroll();pop("🕹️","CHEAT ACTIVATED","Palette swap. +9999 score.")}});
+</script>
+</body>
+</html>
